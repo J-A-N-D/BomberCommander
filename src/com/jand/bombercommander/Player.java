@@ -22,15 +22,15 @@ public class Player {
 	
 	
 	public void setBaseHP(int new_base_hp) {
-		base_hp = new_base_hp;
+		this.base_hp = new_base_hp;
 	}
 	
 	public void setBombsLeft(int updated_bombs_left) {
-		bombs_left = updated_bombs_left;
+		this.bombs_left = updated_bombs_left;
 	}
 	
 	public void setFighterHasKill(boolean updated_fighter_has_kill) {
-		fighter_has_kill = updated_fighter_has_kill;
+		this.fighter_has_kill = updated_fighter_has_kill;
 	}
 	
 }
