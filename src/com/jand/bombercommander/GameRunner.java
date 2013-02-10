@@ -63,6 +63,44 @@ public class GameRunner {
 		is_p1_turn = new_is_p1_turn;
 	}
 	
+	public List<GameObject> getP1GameObjects() {
+		return p1_game_objects;
+	}
+	
+	public List<GameObject> getP2GameObjects() {
+		return p2_game_objects;
+	}
+	
+	public void setP1GameObjects(GameObject new_p1_bomber, GameObject new_p1_fighter, GameObject new_p1_anti_air) {
+		this.p1_game_objects.clear();
+		
+		this.p1_game_objects.add(new_p1_bomber);
+		this.p1_game_objects.add(new_p1_fighter);
+		this.p1_game_objects.add(new_p1_anti_air);
+	}
+	
+	public void setP1GameObjects(GameObject new_p1_bomber, GameObject new_p1_fighter) {
+		this.p1_game_objects.clear();
+		
+		this.p1_game_objects.add(new_p1_bomber);
+		this.p1_game_objects.add(new_p1_fighter);
+	}
+	
+	public void setP2GameObjects(GameObject new_p2_bomber, GameObject new_p2_fighter, GameObject new_p2_anti_air) {
+		this.p2_game_objects.clear();
+		
+		this.p2_game_objects.add(new_p2_bomber);
+		this.p2_game_objects.add(new_p2_fighter);
+		this.p2_game_objects.add(new_p2_anti_air);
+	}
+	
+	public void setP2GameObjects(GameObject new_p2_bomber, GameObject new_p2_fighter) {
+		this.p2_game_objects.clear();
+		
+		this.p2_game_objects.add(new_p2_bomber);
+		this.p2_game_objects.add(new_p2_fighter);
+	}
+	
 	public void roundEndUpdates() {
 		
 		GameObject p1_anti_air = null;
