@@ -12,11 +12,10 @@ public class GameRunner {
 	private List<GameObject> p1_game_objects;
 	private List<GameObject> p2_game_objects;
 	
-	public enum P1BomberState {
-		SHOT_BY_FIGHTER, SHOT_BY_AA, DESTROYED_AA, DAMAGED_BASE
-	}
+	BomberState P1BomberState;
+	BomberState P2BomberState;
 	
-	public enum P2BomberState {
+	public enum BomberState {
 		SHOT_BY_FIGHTER, SHOT_BY_AA, DESTROYED_AA, DAMAGED_BASE
 	}
 	
@@ -132,7 +131,9 @@ public class GameRunner {
 			}
 		}
 		
-		
+		if(p1_bomber.getFieldPosition() == p2_fighter.getFieldPosition()) {
+			this.P1BomberState = BomberState.SHOT_BY_FIGHTER;
+		}
 		
 	}
 }
