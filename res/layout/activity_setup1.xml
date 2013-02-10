@@ -1,0 +1,233 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/FrameLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_overlay"
+    tools:context=".PlayingFieldActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Player 1, set up your forces!"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="128dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Next Player" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/gridTop_aa"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bb_aa_radio" />
+
+                <RadioGroup
+                    android:id="@+id/radio_group_aa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/aa_1_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="true"
+                        android:paddingLeft="10dip"
+                        android:text="Box 1" />
+
+                    <RadioButton
+                        android:id="@+id/aa_2_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 2" />
+
+                    <RadioButton
+                        android:id="@+id/aa_3_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 3" />
+
+                    <RadioButton
+                        android:id="@+id/aa_4_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 4" />
+
+                    <RadioButton
+                        android:id="@+id/aa_5_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 5" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/gridTop_fighter"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bb_fighter_radio" />
+
+                <RadioGroup
+                    android:id="@+id/radio_group_fighter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/fighter_1_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="true"
+                        android:paddingLeft="10dip"
+                        android:text="Box 1" />
+
+                    <RadioButton
+                        android:id="@+id/fighter_2_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 2" />
+
+                    <RadioButton
+                        android:id="@+id/fighter_3_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 3" />
+
+                    <RadioButton
+                        android:id="@+id/fighter_4_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 4" />
+
+                    <RadioButton
+                        android:id="@+id/fighter_5_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 5" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="200dp"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/gridTop_bomber"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bb_bomber_radio" />
+
+                <RadioGroup
+                    android:id="@+id/radio_group_bomber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <RadioButton
+                        android:id="@+id/bomber_1_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="true"
+                        android:paddingLeft="10dip"
+                        android:text="Box 1" />
+
+                    <RadioButton
+                        android:id="@+id/bomber_2_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 2" />
+
+                    <RadioButton
+                        android:id="@+id/bomber_3_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 3" />
+
+                    <RadioButton
+                        android:id="@+id/bomber_4_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 4" />
+
+                    <RadioButton
+                        android:id="@+id/bomber_5_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:checked="false"
+                        android:paddingLeft="10dip"
+                        android:text="Box 5" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
