@@ -4,13 +4,20 @@ public class GameObject {
 	
 	protected boolean is_player_one;
 	protected int field_position;
+	protected GameObjectType type;
+	
+	public enum GameObjectType {
+		ANTIAIR, FIGHTER, BOMBER
+	}
 	
 	public GameObject() {
 		this.is_player_one = true;
 		this.field_position = 0;
+		this.type = GameObjectType.ANTIAIR;
 	}
 	
-	public GameObject(boolean start_is_player_one, int start_field_position) {
+	public GameObject(GameObjectType start_type, boolean start_is_player_one, int start_field_position) {
+		this.type = start_type;
 		this.is_player_one = start_is_player_one;
 		this.field_position = start_field_position;
 	}
