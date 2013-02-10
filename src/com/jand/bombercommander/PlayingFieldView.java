@@ -114,6 +114,7 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 		{
 			for (GameObject obj : gameObjects)
 			{
+				boolean isMatched = false;
 				if (obj.getIsTouched()) obj.setIsTouched( false );
 				
 				if ( obj.getY() < 100)
@@ -121,27 +122,37 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 					if (obj.getX() > 144 * 4)
 					{
 						obj.setX(144 * 4);
+						obj.setLane(4);
 						
 					}
 					else if (obj.getX() > 144 * 3)
 					{
 						obj.setX(144*3);
 						obj.setY(0);
+						obj.setLane(3);
 					}
 					else if (obj.getX() > 144 * 2)
 					{
 						obj.setX(144 * 2);
 						obj.setY(0);
+						obj.setLane(2);
 					}
 					else if (obj.getX() > 144)
 					{
 						obj.setX(144);
 						obj.setY(0);
+						obj.setLane(1);
 					}
 					else
 					{
 						obj.setX(0);
 						obj.setY(0);
+						obj.setLane(-1);
+					}
+				}
+				for(GameObject otherObject: gameObjects){
+					if(obj.getLane() == otherObject.getLane()){
+						
 					}
 				}
 			}
