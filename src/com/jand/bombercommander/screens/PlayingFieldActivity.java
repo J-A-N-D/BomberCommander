@@ -1,7 +1,5 @@
 package com.jand.bombercommander.screens;
 
-import org.osmdroid.views.MapView;
-
 import com.jand.bombercommander.R;
 import com.jand.bombercommander.R.layout;
 import com.jand.bombercommander.R.menu;
