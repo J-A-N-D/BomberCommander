@@ -133,6 +133,22 @@ public class GameRunner {
 		
 		if(p1_bomber.getFieldPosition() == p2_fighter.getFieldPosition()) {
 			this.P1BomberState = BomberState.SHOT_BY_FIGHTER;
+		} else if ( p2_anti_air != null && ( Math.abs(p1_bomber.getFieldPosition() - p2_anti_air.getFieldPosition()) ) == 1) {
+			this.P1BomberState = BomberState.SHOT_BY_AA;
+		} else if ( p2_anti_air != null && (p1_bomber.getFieldPosition() == p2_anti_air.getFieldPosition()) ) {
+			this.P1BomberState = BomberState.DESTROYED_AA;
+		} else {
+			this.P1BomberState = BomberState.DAMAGED_BASE;
+		}
+		
+		if(p2_bomber.getFieldPosition() == p1_fighter.getFieldPosition()) {
+			this.P2BomberState = BomberState.SHOT_BY_FIGHTER;
+		} else if ( p1_anti_air != null && ( Math.abs(p2_bomber.getFieldPosition() - p1_anti_air.getFieldPosition()) ) == 1) {
+			this.P1BomberState = BomberState.SHOT_BY_AA;
+		} else if ( p1_anti_air != null && (p2_bomber.getFieldPosition() == p1_anti_air.getFieldPosition()) ) {
+			this.P1BomberState = BomberState.DESTROYED_AA;
+		} else {
+			this.P1BomberState = BomberState.DAMAGED_BASE;
 		}
 		
 	}
