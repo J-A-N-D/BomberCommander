@@ -125,20 +125,20 @@ public class PlayingFieldView extends SurfaceView implements
 				if (obj.getIsTouched())
 					obj.setIsTouched(false);
 
-				if (obj.getY() < 100) {
-					if (obj.getX() > 144 * 4) {
+				if (obj.getY() <= 100) {
+					if (obj.getX() >= 144 * 4) {
 						// obj.setX(144 * 4);
 						obj.setLane(4);
 
-					} else if (obj.getX() > 144 * 3) {
+					} else if (obj.getX() >= 144 * 3 && obj.getX() <= 144 * 4) {
 						// obj.setX(144*3);
 						// obj.setY(0);
 						obj.setLane(3);
-					} else if (obj.getX() > 144 * 2) {
+					} else if (obj.getX() >= 144 * 2 && obj.getX() <= 144 * 3) {
 						// obj.setX(144 * 2);
 						// obj.setY(0);
 						obj.setLane(2);
-					} else if (obj.getX() > 144) {
+					} else if (obj.getX() >= 144 && obj.getX() <= 144 * 2) {
 						// obj.setX(144);
 						// obj.setY(0);
 						obj.setLane(1);
