@@ -1,27 +1,22 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainScreenActivity" >
 
-    <TextView
-        android:id="@+id/txtViewMainTitle"
+    <ImageView
+        android:id="@+id/titleBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:text="@string/title_activity_main_screen"
-        android:textSize="32sp" />
+        android:src="@drawable/background_title" />
 
     <Button
-        android:id="@+id/buttonStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp"
+        android:id="@+id/btnStart"
+        android:layout_width="128dp"
+        android:layout_height="64dp"
         android:text="@string/btnStart" />
 
-</RelativeLayout>
+</LinearLayout>

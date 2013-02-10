@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="title_activity_main_screen">Bomber\nCommander</string>
+    <string name="title_activity_main_screen">MainScreenActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="label">Bomber Commander</string>
     <string name="btnStart">Start</string>
