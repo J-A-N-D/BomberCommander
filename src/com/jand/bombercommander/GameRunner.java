@@ -1,7 +1,5 @@
 package com.jand.bombercommander;
 
-import java.util.List;
-
 import com.jand.bombercommander.GameObject.GameObjectType;
 
 

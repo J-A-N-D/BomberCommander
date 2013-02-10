@@ -11,8 +11,8 @@ public class Player implements Iterable<GameObject>{
 	private static final int MAX_HP = 10;
 	
 	private int base_hp;
-	List<GameObject> gameObjects;
-	GameObject antiAir, fighter, bomber;
+	protected List<GameObject> gameObjects;
+	protected GameObject antiAir, fighter, bomber;
 	
 	
 	public Player() {
