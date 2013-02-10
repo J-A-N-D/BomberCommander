@@ -31,6 +31,10 @@ public class GameObject {
 		return field_position;
 	}
 	
+	public GameObjectType getType() {
+		return type;
+	}
+	
 	
 	public void setIsPlayerOne(boolean is_player_one) {
 		this.is_player_one = is_player_one;
@@ -38,6 +42,10 @@ public class GameObject {
 	
 	public void setFieldPosition(int new_field_position) {
 		this.field_position = new_field_position;
+	}
+	
+	public void setType(GameObjectType new_type) {
+		this.type = new_type;
 	}
 	
 }
