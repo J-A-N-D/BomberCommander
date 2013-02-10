@@ -1,40 +1,41 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout1"
+    android:id="@+id/FrameLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_overlay"
-    android:orientation="vertical"
     tools:context=".PlayingFieldActivity" >
 
-    <ImageView
-        android:id="@+id/gridTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/grid" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/backgroundBattle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/gridBottom"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/gridTop"
-        android:src="@drawable/background_battle" />
+        <ImageView
+            android:id="@+id/gridTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/grid" />
 
-    <ImageView
-        android:id="@+id/gridBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/grid" />
+        <ImageView
+            android:id="@+id/backgroundBattle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.00"
+            android:src="@drawable/background_battle" />
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/gridBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/grid" />
+    </LinearLayout>
+
+    <com.jand.bombercommander.PlayingFieldView
+        android:id="@+id/playingFieldView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>

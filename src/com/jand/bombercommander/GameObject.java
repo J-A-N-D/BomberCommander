@@ -7,6 +7,7 @@ public class GameObject {
 	
 	private Bitmap bitmap;
 	private int posX, posY;
+	private int width, height;
 	private boolean isTouched;
 	private boolean is_player_one;
 	private int field_position;

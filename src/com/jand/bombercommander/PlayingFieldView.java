@@ -1,10 +1,13 @@
 package com.jand.bombercommander;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.PixelFormat;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -13,14 +16,24 @@ import android.view.SurfaceView;
 public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callback {
 	private static final String TAG = PlayingFieldView.class.getSimpleName();
 	private GameThread thread;
-	private GameObject AAGun;
 	
-	public PlayingFieldView(Context context) {
-		super(context);
+	private ArrayList<GameObject> gameObjects;
+	
+	public PlayingFieldView(Context context, AttributeSet attributeSet) {
+		super(context, attributeSet);
 		
+		if( !isInEditMode() )
+		{
+			this.setZOrderOnTop( true );
+			getHolder().setFormat( PixelFormat.TRANSPARENT );
+		}
 		getHolder().addCallback( this );
 		
-		AAGun = new GameObject( BitmapFactory.decodeResource(getResources(), R.drawable.bc_aa), 50, 50 );
+		gameObjects = new ArrayList<GameObject>();
+		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_aa), 50, 50) );
+		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_bomber), 200, 50) );
+		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_fighter), 400, 50) );
+		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_explosion), 600, 50) );
 		
 		thread = new GameThread( getHolder(), this );
 		setFocusable( true );
@@ -63,7 +76,11 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 	{
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
 		{
-			AAGun.handleActionDown( (int)event.getX(), (int)event.getY() );
+			for (GameObject obj : gameObjects)
+			{
+				obj.handleActionDown( (int)event.getX(), (int)event.getY() );
+			}
+			
 		
 			if (event.getY() > getHeight() - 100 )
 			{
@@ -76,16 +93,22 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 			
 		if (event.getAction() == MotionEvent.ACTION_MOVE)
 		{
-			if (AAGun.getIsTouched())
+			for (GameObject obj : gameObjects)
 			{
-				AAGun.setX( (int)event.getX() );
-				AAGun.setY( (int)event.getY() );
+				if (obj.getIsTouched())
+				{
+					obj.setX( (int)event.getX() - obj.getBitmap().getWidth() / 2 );
+					obj.setY( (int)event.getY() - obj.getBitmap().getHeight() / 2 );
+				}
 			}
 		}
 		
 		if (event.getAction() == MotionEvent.ACTION_UP)
 		{
-			if (AAGun.getIsTouched()) AAGun.setIsTouched( false );
+			for (GameObject obj : gameObjects)
+			{
+				if (obj.getIsTouched()) obj.setIsTouched( false );
+			}
 		}
 		
 		return true;
@@ -94,7 +117,11 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 	@Override
 	public void onDraw( Canvas c )
 	{
-		c.drawColor( Color.GRAY );
-		AAGun.draw( c );
+		if( !isInEditMode() )
+			c.drawColor(0, android.graphics.PorterDuff.Mode.CLEAR);
+		for (GameObject obj : gameObjects)
+		{
+			obj.draw( c );
+		}
 	}
 }
