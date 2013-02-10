@@ -14,13 +14,13 @@ import android.widget.Button;
 import android.app.Activity;
 import android.content.Intent;
 
-public class MainScreenActivity extends Activity {
-	private static final String TAG = MainScreenActivity.class.getSimpleName();
+public class Setup1Activity extends Activity {
+	private static final String TAG = Setup1Activity.class.getSimpleName();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main_screen);
+		setContentView(R.layout.activity_setup1);
 		
 		Button startButton = (Button)findViewById(R.id.btnStart);
 		
@@ -28,7 +28,7 @@ public class MainScreenActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent startGame = new Intent( MainScreenActivity.this, Setup1Activity.class );
+				Intent startGame = new Intent( Setup1Activity.this, Setup2Activity.class );
 				startActivity( startGame );
 			}
 		});
