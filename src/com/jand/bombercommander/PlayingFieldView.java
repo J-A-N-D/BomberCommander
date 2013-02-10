@@ -112,6 +112,9 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 		
 		if (event.getAction() == MotionEvent.ACTION_UP)
 		{
+			//Loops through game objects and places them on the top of the screen in a box
+			//first it sets the lane for the object, and prevents the object from stacking on an occupied lane
+			//then it sets the object's x,y coordinates onto the screen
 			for (GameObject obj : gameObjects)
 			{
 				boolean isMatched = false;
@@ -121,39 +124,60 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 				{
 					if (obj.getX() > 144 * 4)
 					{
-						obj.setX(144 * 4);
+						//obj.setX(144 * 4);
 						obj.setLane(4);
 						
 					}
 					else if (obj.getX() > 144 * 3)
 					{
-						obj.setX(144*3);
-						obj.setY(0);
+						//obj.setX(144*3);
+						//obj.setY(0);
 						obj.setLane(3);
 					}
 					else if (obj.getX() > 144 * 2)
 					{
-						obj.setX(144 * 2);
-						obj.setY(0);
+						//obj.setX(144 * 2);
+						//obj.setY(0);
 						obj.setLane(2);
 					}
 					else if (obj.getX() > 144)
 					{
-						obj.setX(144);
-						obj.setY(0);
+						//obj.setX(144);
+						//obj.setY(0);
 						obj.setLane(1);
 					}
 					else
 					{
-						obj.setX(0);
-						obj.setY(0);
-						obj.setLane(-1);
+						//obj.setX(0);
+						//obj.setY(0);
+						obj.setLane(0);
 					}
+				}else{
+					obj.setLane(-1);
 				}
 				for(GameObject otherObject: gameObjects){
 					if(obj.getLane() == otherObject.getLane()){
-						
+						obj.setLane(-1);
 					}
+				}
+				if(obj.getLane()==-1){
+					int xOffset = 0;
+					switch(obj.getType()){
+					case BOMBER:
+						xOffset = -100;
+						break;
+					case FIGHTER:
+						xOffset = 0;
+						break;
+					case ANTIAIR:
+						xOffset = 100;
+						break;
+					}
+					obj.setX(640 + xOffset);
+					obj.setY(360);
+				}else{
+					obj.setY(0);
+					obj.setX(obj.getLane() * 144);
 				}
 			}
 		}
