@@ -37,14 +37,14 @@ public class PlayingFieldView extends SurfaceView implements
 		// Game object tests
 		gameObjects = new ArrayList<GameObject>();
 		gameObjects.add(new GameObject(BitmapFactory.decodeResource(
-				getResources(), R.drawable.bc_aa), GameObjectType.ANTIAIR, 50,
+				getResources(), R.drawable.bc_aa), GameObjectType.ANTIAIR, 110,
 				640));
 		gameObjects.add(new GameObject(BitmapFactory.decodeResource(
 				getResources(), R.drawable.bc_bomber), GameObjectType.BOMBER,
-				200, 640));
+				310, 640));
 		gameObjects.add(new GameObject(BitmapFactory.decodeResource(
 				getResources(), R.drawable.bc_fighter), GameObjectType.FIGHTER,
-				350, 640));
+				510, 640));
 
 		thread = new GameThread(getHolder(), this);
 		setFocusable(true);
@@ -160,13 +160,13 @@ public class PlayingFieldView extends SurfaceView implements
 					int xOffset = 0;
 					switch (obj.getType()) {
 					case BOMBER:
-						xOffset = -100;
+						xOffset = -50;
 						break;
 					case FIGHTER:
-						xOffset = 0;
+						xOffset = 150;
 						break;
 					case ANTIAIR:
-						xOffset = 100;
+						xOffset = -250;
 						break;
 					}
 					obj.setX(360 + xOffset);
