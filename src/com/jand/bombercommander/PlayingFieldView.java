@@ -20,7 +20,6 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 	private GameThread thread;
 	
 	private ArrayList<GameObject> gameObjects;
-	Bitmap reversedAA, reversedBomber, reversedFighter;
 	
 	public PlayingFieldView(Context context, AttributeSet attributeSet) {
 		super(context, attributeSet);
@@ -54,9 +53,6 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 	public void surfaceCreated(SurfaceHolder holder) {
 		Matrix reverse = new Matrix();
 		reverse.postRotate(180);
-		reversedAA = Bitmap.createBitmap(gameObjects.get(0).getBitmap(), 0, 0, 100, 100, reverse, false);
-		reversedBomber = Bitmap.createBitmap(gameObjects.get(1).getBitmap(), 0, 0, 100, 100, reverse, false);
-		reversedFighter = Bitmap.createBitmap(gameObjects.get(2).getBitmap(), 0, 0, 100, 100, reverse, false);
 		
 		thread.setRunning( true );
 		thread.start();
@@ -158,14 +154,13 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 	public void onDraw( Canvas c )
 	{
 		if( !isInEditMode() )
-			c.drawColor(0, android.graphics.PorterDuff.Mode.CLEAR);
-		for (GameObject obj : gameObjects)
 		{
-			obj.draw( c );
-			c.drawBitmap(reversedAA, 50, 300, null);
-			c.drawBitmap(reversedFighter, 200, 300, null);
-			c.drawBitmap(reversedBomber, 400, 300, null);
-
+			c.drawColor(0, android.graphics.PorterDuff.Mode.CLEAR);
+		
+			for (GameObject obj : gameObjects)
+			{
+				obj.draw( c );	
+			}
 		}
 	}
 }

@@ -28,7 +28,7 @@ public class MainScreenActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent startGame = new Intent( MainScreenActivity.this, Setup1Activity.class );
+				Intent startGame = new Intent( MainScreenActivity.this, Player1SetupActivity.class );
 				startActivity( startGame );
 			}
 		});

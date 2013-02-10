@@ -23,26 +23,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jand.bombercommander.screens.Setup1Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.jand.bombercommander.screens.Setup2Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="com.jand.bombercommander.screens.PlayingFieldActivity"
             android:label="@string/title_activity_playing_field" >
+        </activity>
+        <activity
+            android:name="com.jand.bombercommander.screens.Player1SetupActivity"
+            android:label="@string/title_activity_player1_setup"
+            android:parentActivityName="com.jand.bombercommander.screens.PlayingFieldActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.jand.bombercommander.screens.PlayingFieldActivity" />
         </activity>
     </application>
 
