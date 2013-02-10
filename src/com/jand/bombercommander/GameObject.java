@@ -1,6 +1,7 @@
 package com.jand.bombercommander;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
 public class GameObject {
@@ -18,7 +19,8 @@ public class GameObject {
 		ANTIAIR, FIGHTER, BOMBER
 	}
 	
-	public GameObject(Bitmap graphics, int x, int y) {
+	public GameObject(Bitmap graphics, GameObjectType type, int x, int y) {
+		this.type = type;
 		this.bitmap = graphics;
 		posX = x;
 		posY = y;

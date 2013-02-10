@@ -1,7 +1,7 @@
 package com.jand.bombercommander;
-
+import com.jand.bombercommander.GameObject;
+import com.jand.bombercommander.GameObject.GameObjectType;
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -35,9 +35,9 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 		
 		// Game object tests
 		gameObjects = new ArrayList<GameObject>();
-		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_aa), 50, 640) );
-		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_bomber), 200, 640) );
-		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_fighter), 350, 640) );
+		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_aa), GameObjectType.ANTIAIR, 50, 640) );
+		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_bomber), GameObjectType.BOMBER, 200, 640) );
+		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_fighter), GameObjectType.FIGHTER, 350, 640) );
 		
 		thread = new GameThread( getHolder(), this );
 		setFocusable( true );
