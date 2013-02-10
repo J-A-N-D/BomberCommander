@@ -1,8 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="title_activity_main_screen">Bomber\nCommander</string>
     <string name="hello_world">Hello world!</string>
     <string name="label">Bomber Commander</string>
     <string name="btnStart">Start</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_playing_field">PlayingFieldActivity</string>
 
 </resources>
