@@ -59,16 +59,8 @@ public class Setup1Activity extends Activity implements OnCheckedChangeListener 
 	public void onCheckedChanged(RadioGroup radiogroup, int checkedId) {
 		String numeral = null;
         switch (checkedId) {
-        case R.id.first_radio_button:
-                numeral = "first";
-                break;
-        case R.id.second_radio_button:
-                numeral = "second";
-                break;
-        case R.id.third_radio_button:
-                numeral = "third";
-                break;
+
 		
 	}
-	
+	}
 }
