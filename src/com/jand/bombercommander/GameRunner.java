@@ -113,21 +113,21 @@ public class GameRunner {
 			}
 		}
 		
-		if(p1_bomber.getFieldPosition() == p2_fighter.getFieldPosition()) {
+		if(p1_bomber.getLane() == p2_fighter.getLane()) {
 			this.P1BomberState = BomberState.SHOT_BY_FIGHTER;
-		} else if ( p2_anti_air != null && ( Math.abs(p1_bomber.getFieldPosition() - p2_anti_air.getFieldPosition()) ) == 1) {
+		} else if ( p2_anti_air != null && ( Math.abs(p1_bomber.getLane() - p2_anti_air.getLane()) ) == 1) {
 			this.P1BomberState = BomberState.SHOT_BY_AA;
-		} else if ( p2_anti_air != null && (p1_bomber.getFieldPosition() == p2_anti_air.getFieldPosition()) ) {
+		} else if ( p2_anti_air != null && (p1_bomber.getLane() == p2_anti_air.getLane()) ) {
 			this.P1BomberState = BomberState.DESTROYED_AA;
 		} else {
 			this.P1BomberState = BomberState.DAMAGED_BASE;
 		}
 		
-		if(p2_bomber.getFieldPosition() == p1_fighter.getFieldPosition()) {
+		if(p2_bomber.getLane() == p1_fighter.getLane()) {
 			this.P2BomberState = BomberState.SHOT_BY_FIGHTER;
-		} else if ( p1_anti_air != null && ( Math.abs(p2_bomber.getFieldPosition() - p1_anti_air.getFieldPosition()) ) == 1) {
+		} else if ( p1_anti_air != null && ( Math.abs(p2_bomber.getLane() - p1_anti_air.getLane()) ) == 1) {
 			this.P1BomberState = BomberState.SHOT_BY_AA;
-		} else if ( p1_anti_air != null && (p2_bomber.getFieldPosition() == p1_anti_air.getFieldPosition()) ) {
+		} else if ( p1_anti_air != null && (p2_bomber.getLane() == p1_anti_air.getLane()) ) {
 			this.P1BomberState = BomberState.DESTROYED_AA;
 		} else {
 			this.P1BomberState = BomberState.DAMAGED_BASE;
