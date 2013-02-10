@@ -27,7 +27,6 @@ public class GameObject {
 		isTouched = false;
 		this.is_player_one = true;
 		this.field_position = 0;
-		this.type = GameObjectType.ANTIAIR;
 		lane = -1;
 	}
 	
@@ -123,6 +122,7 @@ public class GameObject {
 	 * @param eventY
 	 * @return
 	 */
+	
 	public boolean handleActionDown( int eventX, int eventY )
 	{
 		if (eventX >= (posX - bitmap.getWidth()) && (eventX <= (posX + bitmap.getWidth())))
