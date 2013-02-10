@@ -1,5 +1,7 @@
 package com.jand.bombercommander.screens;
 
+import org.osmdroid.views.MapView;
+
 import com.jand.bombercommander.R;
 import com.jand.bombercommander.R.layout;
 import com.jand.bombercommander.R.menu;
@@ -14,20 +16,23 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Picture;
 import android.graphics.drawable.Drawable;
+import android.content.Context;
 import android.content.res.Resources;
 import android.widget.RelativeLayout;
 import android.graphics.drawable.NinePatchDrawable;
 
 public class PlayingFieldActivity extends Activity {
+	private View playingFieldView;
 	Paint paint;
 	Canvas canvas;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		playingFieldView = new View(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_playing_field);
 		Bitmap b = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
 		canvas = new Canvas(b);
-		
+		playingFieldView.invalidate();
 	}
 
 	@Override
@@ -37,10 +42,18 @@ public class PlayingFieldActivity extends Activity {
 		return true;
 	}
 	
-	public void draw(){
-		//getCurrentFocus().draw(canvas);
-		Resources res = getResources();
-	    Drawable myImage = res.getDrawable(R.drawable.bc_aa);
-	    myImage.draw(canvas);
+	private class PlayingFieldView extends View{
+
+		public PlayingFieldView(Context context) {
+			super(context);
+			// TODO Auto-generated constructor stub
+		}
+		@Override
+		public void onDraw(Canvas c){
+			Resources res = getResources();
+		    Drawable myImage = res.getDrawable(R.drawable.bc_aa);
+		    myImage.draw(canvas);
+		}
+		
 	}
 }
