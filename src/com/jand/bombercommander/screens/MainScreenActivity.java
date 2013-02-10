@@ -1,6 +1,5 @@
 package com.jand.bombercommander.screens;
 
-import com.jand.bombercommander.PlayingFieldActivity;
 import com.jand.bombercommander.R;
 import com.jand.bombercommander.R.layout;
 

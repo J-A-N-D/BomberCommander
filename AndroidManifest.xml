@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jand.bombercommander.PlayingFieldActivity"
+            android:name="com.jand.bombercommander.screens.PlayingFieldActivity"
             android:label="@string/title_activity_playing_field" >
         </activity>
     </application>
