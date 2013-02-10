@@ -38,7 +38,6 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_aa), 50, 640) );
 		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_bomber), 200, 640) );
 		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_fighter), 350, 640) );
-		gameObjects.add( new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_explosion), 500, 640) );
 		
 		thread = new GameThread( getHolder(), this );
 		setFocusable( true );
@@ -179,8 +178,8 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 						xOffset = 100;
 						break;
 					}
-					obj.setX(640 + xOffset);
-					obj.setY(360);
+					obj.setX(360 + xOffset);
+					obj.setY(640);
 				}else{
 					obj.setY(0);
 					obj.setX(obj.getLane() * 144);

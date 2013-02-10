@@ -2,7 +2,6 @@ package com.jand.bombercommander.screens;
 
 import com.jand.bombercommander.R;
 import com.jand.bombercommander.R.layout;
-import com.jand.bombercommander.R.menu;
 
 import android.app.Activity;
 import android.os.Bundle;

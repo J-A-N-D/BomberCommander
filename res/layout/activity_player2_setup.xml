@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/blue_overlay"
-    tools:context=".Player1SetupActivity" >
+    tools:context=".Player2SetupActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,21 +44,21 @@
         android:layout_height="match_parent" >
 
         <TextView
-            android:id="@+id/textP1Setup"
+            android:id="@+id/textP2Setup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="170dp"
-            android:text="Player 1 Setup"
+            android:layout_marginBottom="100dp"
+            android:text="Player 2 Setup"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
-            android:id="@+id/btnNextPlayer"
+            android:id="@+id/btnPrepareBattle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
-            android:text="Next Player" />
+            android:layout_marginTop="50dp"
+            android:text="Prepare for Battle" />
 
     </FrameLayout>
 
