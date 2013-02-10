@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_overlay"
+    tools:context=".GameActivity" >
+
+    <ImageView
+        android:id="@+id/battleBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/GridLayout1"
+        android:layout_below="@+id/GridLayout01"
+        android:src="@drawable/background_battle" />
+
+    <GridLayout
+        android:id="@+id/TopGrid"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:columnCount="3"
+        android:rowCount="1" >
+
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/BottomGrid"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:columnCount="3"
+        android:rowCount="1" >
+    </GridLayout>
+
+</RelativeLayout>
