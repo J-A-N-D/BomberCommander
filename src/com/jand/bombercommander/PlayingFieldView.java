@@ -11,6 +11,7 @@ import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -81,11 +82,17 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 	@Override
 	public boolean onTouchEvent( MotionEvent event )
 	{
+		
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
 		{
+			boolean objectFound = false;
 			for (GameObject obj : gameObjects)
 			{
-				obj.handleActionDown( (int)event.getX(), (int)event.getY() );
+				//only tries to set A SINGLE object to a motion event
+				if(!objectFound){
+					objectFound = obj.handleActionDown( (int)event.getX(), (int)event.getY() );
+				}
+				
 			}
 			
 		
@@ -117,7 +124,6 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 			//then it sets the object's x,y coordinates onto the screen
 			for (GameObject obj : gameObjects)
 			{
-				boolean isMatched = false;
 				if (obj.getIsTouched()) obj.setIsTouched( false );
 				
 				if ( obj.getY() < 100)

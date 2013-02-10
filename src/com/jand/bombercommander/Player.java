@@ -10,7 +10,7 @@ public class Player {
 	
 	public Player() {
 		this.base_hp = MAX_HP;
-		this.fighter_has_kill = false;
+		//this.fighter_has_kill = false;
 	}
 	
 	

@@ -115,7 +115,13 @@ public class GameObject {
 		this.type = new_type;
 	}
 	
-	public void handleActionDown( int eventX, int eventY )
+	/**
+	 * returns true if the object is being touched
+	 * @param eventX
+	 * @param eventY
+	 * @return
+	 */
+	public boolean handleActionDown( int eventX, int eventY )
 	{
 		if (eventX >= (posX - bitmap.getWidth()) && (eventX <= (posX + bitmap.getWidth())))
 		{
@@ -126,6 +132,7 @@ public class GameObject {
 		}
 		else
 			setIsTouched( false );
+		return isTouched;
 	}
 	
 	public void draw( Canvas c )
