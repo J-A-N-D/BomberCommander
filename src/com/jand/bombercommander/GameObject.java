@@ -11,6 +11,7 @@ public class GameObject {
 	private boolean isTouched;
 	private boolean is_player_one;
 	private int field_position;
+	private int lane;
 	GameObjectType type;
 	
 	public enum GameObjectType {
@@ -25,12 +26,14 @@ public class GameObject {
 		this.is_player_one = true;
 		this.field_position = 0;
 		this.type = GameObjectType.ANTIAIR;
+		lane = -1;
 	}
 	
 	public GameObject(GameObjectType start_type, boolean start_is_player_one, int start_field_position) {
 		this.type = start_type;
 		this.is_player_one = start_is_player_one;
 		this.field_position = start_field_position;
+		lane = -1;
 	}
 	
 	public Bitmap getBitmap()
@@ -52,7 +55,21 @@ public class GameObject {
 	{
 		posX = x;
 	}
-	
+	/**
+	 * returns the lane that this object has been placed in
+	 * returns -1 if the lane has not been set
+	 */
+	public int getLane()
+	{
+		return lane;
+	}
+	/**
+	 * sets the lane of the object
+	 * @return
+	 */
+	public void setLane(int lane){
+		this.lane = lane;
+	}
 	public int getY()
 	{
 		return posY;
