@@ -163,8 +163,5 @@ public class PlayingFieldView extends SurfaceView implements SurfaceHolder.Callb
 		{
 			obj.draw( c );
 		}
-		c.drawBitmap(reversedAA, 50, 300, null);
-		c.drawBitmap(reversedFighter, 200, 300, null);
-		c.drawBitmap(reversedBomber, 400, 300, null);
 	}
 }
