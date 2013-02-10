@@ -1,16 +1,26 @@
 package com.jand.bombercommander;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+
 public class GameObject {
 	
-	protected boolean is_player_one;
-	protected int field_position;
-	protected GameObjectType type;
+	private Bitmap bitmap;
+	private int posX, posY;
+	private boolean isTouched;
+	private boolean is_player_one;
+	private int field_position;
+	GameObjectType type;
 	
 	public enum GameObjectType {
 		ANTIAIR, FIGHTER, BOMBER
 	}
 	
-	public GameObject() {
+	public GameObject(Bitmap graphics, int x, int y) {
+		this.bitmap = graphics;
+		posX = x;
+		posY = y;
+		isTouched = false;
 		this.is_player_one = true;
 		this.field_position = 0;
 		this.type = GameObjectType.ANTIAIR;
@@ -22,6 +32,45 @@ public class GameObject {
 		this.field_position = start_field_position;
 	}
 	
+	public Bitmap getBitmap()
+	{
+		return bitmap;
+	}
+	
+	public void setBitmap( Bitmap bitmap )
+	{
+		this.bitmap = bitmap;
+	}
+	
+	public int getX()
+	{
+		return posX;
+	}
+	
+	public void setX( int x )
+	{
+		posX = x;
+	}
+	
+	public int getY()
+	{
+		return posY;
+	}
+	
+	public void setY( int y )
+	{
+		posY = y;
+	}
+	
+	public boolean getIsTouched()
+	{
+		return isTouched;
+	}
+	
+	public void setIsTouched( boolean touched )
+	{
+		isTouched = touched;
+	}
 	
 	public boolean getIsPlayerOne() {
 		return is_player_one;
@@ -46,6 +95,24 @@ public class GameObject {
 	
 	public void setType(GameObjectType new_type) {
 		this.type = new_type;
+	}
+	
+	public void handleActionDown( int eventX, int eventY )
+	{
+		if (eventX >= (posX - bitmap.getWidth()) && (eventX <= (posX + bitmap.getWidth())))
+		{
+			if (eventY >= (posY - bitmap.getHeight()) && (eventY <= (posY + bitmap.getHeight())))
+				setIsTouched( true );
+			else
+				setIsTouched( false );
+		}
+		else
+			setIsTouched( false );
+	}
+	
+	public void draw( Canvas c )
+	{
+		c.drawBitmap( bitmap, posX, posY, null );
 	}
 	
 }
