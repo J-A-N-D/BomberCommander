@@ -44,16 +44,16 @@
         android:layout_height="match_parent" >
 
         <TextView
-            android:id="@+id/textP1Setup"
+            android:id="@+id/textPlayerSetup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="170dp"
-            android:text="Player 1 Setup"
+            android:text="Player 1 Setup (Bottom Row)"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
-            android:id="@+id/btnNextPlayer"
+            android:id="@+id/btnAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

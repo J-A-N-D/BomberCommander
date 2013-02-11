@@ -4,6 +4,7 @@ import com.jand.bombercommander.GameThread;
 import com.jand.bombercommander.R;
 import com.jand.bombercommander.R.layout;
 
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,16 +29,26 @@ public class Player1SetupActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player1_setup);
 		
-		playerText = (TextView)findViewById(R.id.textP1Setup);
-		actionButton = (Button)findViewById(R.id.btnNextPlayer);
+		playerText = (TextView)findViewById(R.id.textPlayerSetup);
+		actionButton = (Button)findViewById(R.id.btnAction);
 		
 			actionButton.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				state = gameState.P2_SETUP;
-				playerText.setText( "Player 2 Setup" );
-				actionButton.setText( "Prepare for Battle" );
+				switch (state)
+				{
+				case P1_SETUP:
+					state = gameState.P2_SETUP;
+					playerText.setText( "Player 2 Setup (Bottom Row)" );
+					actionButton.setText( "Prepare for Battle!" );
+					break;
+				case P2_SETUP:
+					state = gameState.ANIMATION;
+					playerText.setVisibility( 1 );
+					actionButton.setVisibility( 1 );
+					break;
+				}
 			}
 		});
 	}

@@ -31,10 +31,6 @@
             android:label="@string/title_activity_player1_setup"
             android:parentActivityName="com.jand.bombercommander.screens.PlayingFieldActivity" >
         </activity>
-        <activity
-            android:name="com.jand.bombercommander.screens.Player2SetupActivity"
-            android:label="@string/title_activity_player2_setup" >
-        </activity>
     </application>
 
 </manifest>
