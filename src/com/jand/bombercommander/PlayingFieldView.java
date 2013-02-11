@@ -26,10 +26,6 @@ public class PlayingFieldView extends SurfaceView implements
 	ArrayList<GameObject> totalGameObjects;
 
 	Player p1, p2;
-	
-	int player1BomberState = 0;
-	int player2BomberState = 0;
-	boolean gameResolved = false;
 
 	public PlayingFieldView(Context context, AttributeSet attributeSet) {
 		super(context, attributeSet);
@@ -217,14 +213,9 @@ public class PlayingFieldView extends SurfaceView implements
 					obj.draw(c);
 				break;
 			case ANIMATION:
-				if(!gameResolved){
-					resolveGame();
-				}
-				
 				for (GameObject obj : totalGameObjects)
 					obj.draw(c);
 				break;
-				
 			}
 			
 		}
@@ -238,47 +229,7 @@ public class PlayingFieldView extends SurfaceView implements
 			}else if (!obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
 				obj.setY(obj.getY() + 5);
 			}
-			if(obj.getIsPlayerOne() && obj.getType() == GameObjectType.BOMBER){
-				switch(player1BomberState){
-				case 0:
-					
-					break;
-				case 1:
-					if(obj.getY() < 500){
-						Bitmap explosion = BitmapFactory.decodeResource(getResources(), R.drawable.bc_explosion);
-						obj.setBitmap( explosion );
-					}
-					break;
-				case 2:
-					if(obj.getY() < 500)
-					break;
-				}
-			}
 		}
-		switch(player2BomberState){
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		}
-	}
-	public void resolveGame(){
-		player1BomberState = 0;
-		player2BomberState = 0;
-		if(p1.getBomber().getLane() == (p2.getFighter().getLane())){
-			player1BomberState = 1;
-		}if(Math.abs(p1.getBomber().getLane() - p2.getAntiAir().getLane()) == 1){
-			player1BomberState = 2;
-		}
-		if(Math.abs(p2.getBomber().getLane() - p1.getAntiAir().getLane()) == 1){
-			player2BomberState = 2;
-		}
-		if(p2.getBomber().getLane() == (p2.getFighter().getLane())){
-			player2BomberState = 1;
-		}
-		gameResolved = true;
 	}
 
 	private void checkPlayer() {
