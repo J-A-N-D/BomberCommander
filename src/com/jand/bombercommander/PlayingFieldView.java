@@ -142,8 +142,7 @@ public class PlayingFieldView extends SurfaceView implements
 			for (GameObject obj : playerGameObjects) {
 				if (obj.getIsTouched())
 					obj.setIsTouched(false);
-
-				if (obj.getY() <= 100) {
+				if ((obj.getY() <= 100 && !obj.getIsPlayerOne()) || obj.getY() >= 1180 && obj.getIsPlayerOne()) {
 					if (obj.getX() >= 144 * 4) {
 						// obj.setX(144 * 4);
 						obj.setLane(4);
@@ -190,7 +189,11 @@ public class PlayingFieldView extends SurfaceView implements
 					obj.setX(360 + xOffset);
 					obj.setY(640);
 				} else {
-					obj.setY(0);
+					if(obj.getIsPlayerOne()){
+						obj.setY(1180);
+					}else {
+						obj.setY(0);
+					}
 					obj.setX(obj.getLane() * 144);
 				}
 			}
@@ -225,9 +228,9 @@ public class PlayingFieldView extends SurfaceView implements
 	private void updateAnimation() {
 
 		for (GameObject obj : totalGameObjects) {
-			if(obj.getIsPlayerOne()){
+			if(obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
 				obj.setY(obj.getY() - 1);
-			}else{
+			}else if (!obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
 				obj.setY(obj.getY() + 1);
 			}
 		}
@@ -247,9 +250,11 @@ public class PlayingFieldView extends SurfaceView implements
 				totalGameObjects = new ArrayList<GameObject>();
 				for (GameObject g : p1.getGameObjectList()) {
 					totalGameObjects.add(g);
+					g.setIsPlayerOne(true);
 				}
 				for (GameObject g : p2.getGameObjectList()) {
 					totalGameObjects.add(g);
+					g.setIsPlayerOne(false);
 				}
 			}	
 			updateAnimation();
