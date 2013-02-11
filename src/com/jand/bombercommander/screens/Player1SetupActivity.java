@@ -47,6 +47,7 @@ public class Player1SetupActivity extends Activity {
 					state = gameState.ANIMATION;
 					playerText.setVisibility( v.INVISIBLE );
 					actionButton.setVisibility( v.INVISIBLE );
+					
 					break;
 				}
 			}
