@@ -40,7 +40,7 @@ public class Player1SetupActivity extends Activity {
 				{
 				case P1_SETUP:
 					state = gameState.P2_SETUP;
-					playerText.setText( "Player 2 Setup (Bottom Row)" );
+					playerText.setText( "Player 2 Setup (Top Row)" );
 					actionButton.setText( "Prepare for Battle!" );
 					break;
 				case P2_SETUP:

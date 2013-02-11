@@ -22,7 +22,8 @@ import android.view.SurfaceView;
 public class PlayingFieldView extends SurfaceView implements
 		SurfaceHolder.Callback {
 	private static final String TAG = PlayingFieldView.class.getSimpleName();
-	ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+	ArrayList<GameObject> playerGameObjects = new ArrayList<GameObject>();
+	ArrayList<GameObject> totalGameObjects;
 
 	Player p1, p2;
 
@@ -109,7 +110,7 @@ public class PlayingFieldView extends SurfaceView implements
 				break;
 			}
 
-			for (GameObject obj : gameObjects) {
+			for (GameObject obj : playerGameObjects) {
 				// only tries to set A SINGLE object to a motion event
 				if (!objectFound) {
 					objectFound = obj.handleActionDown((int) event.getX(),
@@ -122,7 +123,7 @@ public class PlayingFieldView extends SurfaceView implements
 		}
 
 		if (event.getAction() == MotionEvent.ACTION_MOVE) {
-			for (GameObject obj : gameObjects) {
+			for (GameObject obj : playerGameObjects) {
 				if (obj.getIsTouched()) {
 					obj.setX((int) event.getX() - obj.getBitmap().getWidth()
 							/ 2);
@@ -138,7 +139,7 @@ public class PlayingFieldView extends SurfaceView implements
 			// first it sets the lane for the object, and prevents the object
 			// from stacking on an occupied lane
 			// then it sets the object's x,y coordinates onto the screen
-			for (GameObject obj : gameObjects) {
+			for (GameObject obj : playerGameObjects) {
 				if (obj.getIsTouched())
 					obj.setIsTouched(false);
 
@@ -167,7 +168,7 @@ public class PlayingFieldView extends SurfaceView implements
 				} else {
 					obj.setLane(-1);
 				}
-				for (GameObject otherObject : gameObjects) {
+				for (GameObject otherObject : playerGameObjects) {
 					if (obj.getLane() == otherObject.getLane()
 							&& !obj.equals(otherObject)) {
 						obj.setLane(-1);
@@ -205,14 +206,25 @@ public class PlayingFieldView extends SurfaceView implements
 
 			checkPlayer();
 			
-			for (GameObject obj : gameObjects)
-				obj.draw(c);
+			switch (Player1SetupActivity.state)
+			{
+			case P1_SETUP:
+			case P2_SETUP:
+				for (GameObject obj : playerGameObjects)
+					obj.draw(c);
+				break;
+			case ANIMATION:
+				for (GameObject obj : totalGameObjects)
+					obj.draw(c);
+				break;
+			}
+			
 		}
 	}
 
 	private void updateAnimation() {
 
-		for (GameObject obj : gameObjects) {
+		for (GameObject obj : totalGameObjects) {
 			if(obj.getIsPlayerOne()){
 				obj.setY(obj.getY() - 1);
 			}else{
@@ -225,22 +237,23 @@ public class PlayingFieldView extends SurfaceView implements
 	private void checkPlayer() {
 		switch (Player1SetupActivity.state) {
 		case P1_SETUP:
-			gameObjects = p1.getGameObjectList();
+			playerGameObjects = p1.getGameObjectList();
 			break;
 		case P2_SETUP:
-			gameObjects = p2.getGameObjectList();
+			playerGameObjects = p2.getGameObjectList();
 			break;
 		case ANIMATION:
-			if(gameObjects.size() == 0){
-				gameObjects = new ArrayList<GameObject>();
-				for (GameObject g : p1) {
-					gameObjects.add(g);
+			if(totalGameObjects == null){
+				totalGameObjects = new ArrayList<GameObject>();
+				for (GameObject g : p1.getGameObjectList()) {
+					totalGameObjects.add(g);
 				}
-				for (GameObject g : p2) {
-					gameObjects.add(g);
+				for (GameObject g : p2.getGameObjectList()) {
+					totalGameObjects.add(g);
 				}
-				updateAnimation();
 			}	
+			updateAnimation();
+			break;
 		}
 	}
 }
