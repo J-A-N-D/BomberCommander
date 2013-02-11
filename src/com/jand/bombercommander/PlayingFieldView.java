@@ -101,34 +101,32 @@ public class PlayingFieldView extends SurfaceView implements
 
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			boolean objectFound = false;
-
-			switch (Player1SetupActivity.state) {
-			case P1_SETUP:
-
-				break;
-			case P2_SETUP:
-				break;
-			}
-
-			for (GameObject obj : playerGameObjects) {
-				// only tries to set A SINGLE object to a motion event
-				if (!objectFound) {
-					objectFound = obj.handleActionDown((int) event.getX(),
-							(int) event.getY());
+			
+			if( Player1SetupActivity.state == Player1SetupActivity.gameState.P1_SETUP || Player1SetupActivity.state == Player1SetupActivity.gameState.P2_SETUP)
+			{
+				for (GameObject obj : playerGameObjects) {
+					// only tries to set A SINGLE object to a motion event
+					if (!objectFound) {
+						objectFound = obj.handleActionDown((int) event.getX(),
+								(int) event.getY());
+					}
+	
 				}
-
+				Log.d(VIEW_LOG_TAG, "Coords: x = " + event.getX() + ", y = "
+						+ event.getY());
 			}
-			Log.d(VIEW_LOG_TAG, "Coords: x = " + event.getX() + ", y = "
-					+ event.getY());
 		}
 
 		if (event.getAction() == MotionEvent.ACTION_MOVE) {
-			for (GameObject obj : playerGameObjects) {
-				if (obj.getIsTouched()) {
-					obj.setX((int) event.getX() - obj.getBitmap().getWidth()
-							/ 2);
-					obj.setY((int) event.getY() - obj.getBitmap().getHeight()
-							/ 2);
+			if( Player1SetupActivity.state == Player1SetupActivity.gameState.P1_SETUP || Player1SetupActivity.state == Player1SetupActivity.gameState.P2_SETUP)
+			{
+				for (GameObject obj : playerGameObjects) {
+					if (obj.getIsTouched()) {
+						obj.setX((int) event.getX() - obj.getBitmap().getWidth()
+								/ 2);
+						obj.setY((int) event.getY() - obj.getBitmap().getHeight()
+								/ 2);
+					}
 				}
 			}
 		}
@@ -139,59 +137,62 @@ public class PlayingFieldView extends SurfaceView implements
 			// first it sets the lane for the object, and prevents the object
 			// from stacking on an occupied lane
 			// then it sets the object's x,y coordinates onto the screen
-			for (GameObject obj : playerGameObjects) {
-				if (obj.getIsTouched())
-					obj.setIsTouched(false);
-
-				if (obj.getY() <= 100) {
-					if (obj.getX() >= 144 * 4) {
-						// obj.setX(144 * 4);
-						obj.setLane(4);
-
-					} else if (obj.getX() >= 144 * 3 && obj.getX() <= 144 * 4) {
-						// obj.setX(144*3);
-						// obj.setY(0);
-						obj.setLane(3);
-					} else if (obj.getX() >= 144 * 2 && obj.getX() <= 144 * 3) {
-						// obj.setX(144 * 2);
-						// obj.setY(0);
-						obj.setLane(2);
-					} else if (obj.getX() >= 144 && obj.getX() <= 144 * 2) {
-						// obj.setX(144);
-						// obj.setY(0);
-						obj.setLane(1);
+			if( Player1SetupActivity.state == Player1SetupActivity.gameState.P1_SETUP || Player1SetupActivity.state == Player1SetupActivity.gameState.P2_SETUP)
+			{
+				for (GameObject obj : playerGameObjects) {
+					if (obj.getIsTouched())
+						obj.setIsTouched(false);
+	
+					if (obj.getY() <= 100) {
+						if (obj.getX() >= 144 * 4) {
+							// obj.setX(144 * 4);
+							obj.setLane(4);
+	
+						} else if (obj.getX() >= 144 * 3 && obj.getX() <= 144 * 4) {
+							// obj.setX(144*3);
+							// obj.setY(0);
+							obj.setLane(3);
+						} else if (obj.getX() >= 144 * 2 && obj.getX() <= 144 * 3) {
+							// obj.setX(144 * 2);
+							// obj.setY(0);
+							obj.setLane(2);
+						} else if (obj.getX() >= 144 && obj.getX() <= 144 * 2) {
+							// obj.setX(144);
+							// obj.setY(0);
+							obj.setLane(1);
+						} else {
+							// obj.setX(0);
+							// obj.setY(0);
+							obj.setLane(0);
+						}
 					} else {
-						// obj.setX(0);
-						// obj.setY(0);
-						obj.setLane(0);
-					}
-				} else {
-					obj.setLane(-1);
-				}
-				for (GameObject otherObject : playerGameObjects) {
-					if (obj.getLane() == otherObject.getLane()
-							&& !obj.equals(otherObject)) {
 						obj.setLane(-1);
 					}
-				}
-				if (obj.getLane() == -1) {
-					int xOffset = 0;
-					switch (obj.getType()) {
-					case BOMBER:
-						xOffset = -50;
-						break;
-					case FIGHTER:
-						xOffset = 150;
-						break;
-					case ANTIAIR:
-						xOffset = -250;
-						break;
+					for (GameObject otherObject : playerGameObjects) {
+						if (obj.getLane() == otherObject.getLane()
+								&& !obj.equals(otherObject)) {
+							obj.setLane(-1);
+						}
 					}
-					obj.setX(360 + xOffset);
-					obj.setY(640);
-				} else {
-					obj.setY(0);
-					obj.setX(obj.getLane() * 144);
+					if (obj.getLane() == -1) {
+						int xOffset = 0;
+						switch (obj.getType()) {
+						case BOMBER:
+							xOffset = -50;
+							break;
+						case FIGHTER:
+							xOffset = 150;
+							break;
+						case ANTIAIR:
+							xOffset = -250;
+							break;
+						}
+						obj.setX(360 + xOffset);
+						obj.setY(640);
+					} else {
+						obj.setY(0);
+						obj.setX(obj.getLane() * 144);
+					}
 				}
 			}
 		}
