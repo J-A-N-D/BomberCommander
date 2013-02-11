@@ -22,8 +22,30 @@ import android.content.Intent;
 public class MainScreenActivity extends Activity {
 	private static final String TAG = MainScreenActivity.class.getSimpleName();
 	
+	////////////////////
+	/*private boolean loaded = false;
+	private SoundPool soundPool;
+	private int soundID;*/
+	//////////////
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {		
+	protected void onCreate(Bundle savedInstanceState) {
+		
+		//Some sample code found on http://www.fampennings.nl/maarten/android/07sound/index.htm and from http://www.vogella.com/articles/AndroidMedia/article.html
+		/*
+		soundPool = new SoundPool( 10, AudioManager.STREAM_MUSIC, 0 );
+		soundPool.setOnLoadCompleteListener(new OnLoadCompleteListener() {
+		      @Override
+		      public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+		    	  loaded = true;
+		      }
+		});
+		
+		Context context = getBaseContext();
+		soundID = soundPool.load( context, R.raw.five_armies, 1 );
+		*/
+		//**********************************************
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_screen);
 		
@@ -38,6 +60,25 @@ public class MainScreenActivity extends Activity {
 			}
 		});
 	}
+	
+	/////////////////////////////////////////////
+	/*@Override
+	protected void onStart()
+	{
+		super.onStart();
+		Context context = getBaseContext();
+		AudioManager audioManager = (AudioManager)context.getSystemService( Context.AUDIO_SERVICE );
+		float actualVolume = (float) audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+		float maxVolume = (float) audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		float streamVolume = actualVolume / maxVolume;
+	    
+	    // Is the sound loaded already?
+	    if (loaded) {
+	    	soundPool.play(soundID, streamVolume, streamVolume, 1, 0, 1f);
+	    	Log.e("Test", "Played sound");
+	    }
+	}*/
+	/////////////////////////////////////////////////
 	
 	@Override
 	protected void onDestroy()
