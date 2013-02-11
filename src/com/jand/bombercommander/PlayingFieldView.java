@@ -183,9 +183,9 @@ public class PlayingFieldView extends SurfaceView implements
 						obj.setY(640);
 					} else {
 						if(obj.getIsPlayerOne()){
-							obj.setY(0);
-						}else {
 							obj.setY(1020);
+						}else {
+							obj.setY(0);
 						}
 						obj.setX(obj.getLane() * 144);
 						obj.setX(obj.getLane() * 144);
