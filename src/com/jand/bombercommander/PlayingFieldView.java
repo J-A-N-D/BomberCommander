@@ -143,7 +143,7 @@ public class PlayingFieldView extends SurfaceView implements
 					if (obj.getIsTouched())
 						obj.setIsTouched(false);
 	
-					if ((obj.getY() <= 100 && obj.getIsPlayerOne()) || obj.getY() >= 1000 && !obj.getIsPlayerOne()) {
+					if ((obj.getY() <= 100 && !obj.getIsPlayerOne()) || obj.getY() >= 1020 && obj.getIsPlayerOne()) {
 						if (obj.getX() >= 144 * 4) {
 							obj.setLane(4);
 	
@@ -185,7 +185,7 @@ public class PlayingFieldView extends SurfaceView implements
 						if(obj.getIsPlayerOne()){
 							obj.setY(0);
 						}else {
-							obj.setY(1000);
+							obj.setY(1020);
 						}
 						obj.setX(obj.getLane() * 144);
 						obj.setX(obj.getLane() * 144);
@@ -225,9 +225,9 @@ public class PlayingFieldView extends SurfaceView implements
 
 		for (GameObject obj : totalGameObjects) {
 			if(obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
-				obj.setY(obj.getY() - 1);
+				obj.setY(obj.getY() - 5);
 			}else if (!obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
-				obj.setY(obj.getY() + 1);
+				obj.setY(obj.getY() + 5);
 			}
 		}
 	}
