@@ -22,7 +22,6 @@ import android.view.SurfaceView;
 public class PlayingFieldView extends SurfaceView implements
 		SurfaceHolder.Callback {
 	private static final String TAG = PlayingFieldView.class.getSimpleName();
-	private GameThread thread;
 	ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 	
 	Player p1, p2;
@@ -47,7 +46,7 @@ public class PlayingFieldView extends SurfaceView implements
 		p1 = new Player( AA1, bomber1, fighter1 );
 		p2 = new Player( AA2, bomber2, fighter2 );
 
-		thread = new GameThread(getHolder(), this);
+		Player1SetupActivity.thread = new GameThread(getHolder(), this);
 		setFocusable(true);
 	}
 
@@ -63,8 +62,8 @@ public class PlayingFieldView extends SurfaceView implements
 		Matrix reverse = new Matrix();
 		reverse.postRotate(180);
 
-		thread.setRunning(true);
-		thread.start();
+		Player1SetupActivity.thread.setRunning(true);
+		Player1SetupActivity.thread.start();
 	}
 
 	@Override
@@ -74,7 +73,7 @@ public class PlayingFieldView extends SurfaceView implements
 		Log.d(TAG, "Surface is being destroyed");
 		while (retry) {
 			try {
-				thread.join();
+				Player1SetupActivity.thread.join();
 				retry = false;
 			} catch (InterruptedException e) {
 				Log.d(VIEW_LOG_TAG, e.getMessage());
@@ -107,11 +106,6 @@ public class PlayingFieldView extends SurfaceView implements
 				}
 
 			}
-
-			if (event.getY() > getHeight() - 100) {
-				thread.setRunning(false);
-				((Activity) getContext()).finish();
-			} else
 				Log.d(VIEW_LOG_TAG, "Coords: x = " + event.getX() + ", y = "
 						+ event.getY());
 		}
