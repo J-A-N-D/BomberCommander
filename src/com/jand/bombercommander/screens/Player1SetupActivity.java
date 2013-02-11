@@ -18,7 +18,7 @@ import android.content.Intent;
 public class Player1SetupActivity extends Activity {
 	
 	public static GameThread thread;
-	public static enum gameState { P1_SETUP, P2_SETUP };
+	public static enum gameState { P1_SETUP, P2_SETUP, ANIMATION };
 	public static gameState state;
 	TextView playerText;
 	Button actionButton;

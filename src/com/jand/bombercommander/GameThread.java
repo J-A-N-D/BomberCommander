@@ -50,6 +50,13 @@ public class GameThread extends Thread {
 						playingField.onDraw( canvas );
 					}
 					break;
+				case ANIMATION:
+					canvas = this.surfaceHolder.lockCanvas();
+					synchronized (surfaceHolder)
+					{
+						playingField.onDraw( canvas );
+					}
+					break;
 				default:
 					break;
 				}

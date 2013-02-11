@@ -208,6 +208,14 @@ public class PlayingFieldView extends SurfaceView implements
 		case P2_SETUP:
 			gameObjects = p2.getGameObjectList();
 			break;
+		case ANIMATION:
+			gameObjects = new ArrayList<GameObject>();
+			for(GameObject g: p1){
+				gameObjects.add(g);
+			}
+			for(GameObject g: p2){
+				gameObjects.add(g);
+			}
 		}
 	}
 }
