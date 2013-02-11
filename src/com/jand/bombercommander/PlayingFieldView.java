@@ -239,19 +239,19 @@ public class PlayingFieldView extends SurfaceView implements
 		switch (Player1SetupActivity.state) {
 		case P1_SETUP:
 			playerGameObjects = p1.getGameObjectList();
-			break;
+			for(GameObject g : playerGameObjects){				g.setIsPlayerOne(true);			}			break;
 		case P2_SETUP:
 			playerGameObjects = p2.getGameObjectList();
-			break;
+			for(GameObject g : playerGameObjects){				g.setIsPlayerOne(false);			}			break;
 		case ANIMATION:
 			if(totalGameObjects == null){
 				totalGameObjects = new ArrayList<GameObject>();
 				for (GameObject g : p1.getGameObjectList()) {
 					totalGameObjects.add(g);
-				}
+					g.setIsPlayerOne(true);				}
 				for (GameObject g : p2.getGameObjectList()) {
 					totalGameObjects.add(g);
-				}
+					g.setIsPlayerOne(false);				}
 			}	
 			updateAnimation();
 			break;
