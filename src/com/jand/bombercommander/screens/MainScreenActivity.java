@@ -24,14 +24,14 @@ public class MainScreenActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		//Some sample code found on http://www.fampennings.nl/maarten/android/07sound/index.htm
-		
+		/*
 		SoundPool soundPool = new SoundPool( 30, AudioManager.STREAM_MUSIC, 0 );
 		Context context = getBaseContext();
 		AudioManager audioManager = (AudioManager)context.getSystemService( Context.AUDIO_SERVICE );
 		float streamVolume = audioManager.getStreamVolume( AudioManager.STREAM_MUSIC );
 		int soundID = soundPool.load( context, R.raw.five_armies ,1 );
 		soundPool.play(soundID, streamVolume, streamVolume, 1, -1, 1.0f);
-		
+		*/
 		//**********************************************
 		
 		super.onCreate(savedInstanceState);

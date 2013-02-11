@@ -1,5 +1,6 @@
 package com.jand.bombercommander;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class Player implements Iterable<GameObject>{
 	private static final int MAX_HP = 10;
 	
 	private int base_hp;
-	protected List<GameObject> gameObjects;
+	protected ArrayList<GameObject> gameObjects;
 	protected GameObject antiAir, fighter, bomber;
 	
 	
@@ -23,7 +24,7 @@ public class Player implements Iterable<GameObject>{
 		this.bomber = new GameObject(GameObjectType.BOMBER, true, 1);
 		this.fighter = new GameObject(GameObjectType.FIGHTER, true, 2);
 		
-		gameObjects = new LinkedList<GameObject>();
+		gameObjects = new ArrayList<GameObject>();
 		gameObjects.add(antiAir);
 		gameObjects.add(bomber);
 		gameObjects.add(fighter);
@@ -36,7 +37,7 @@ public class Player implements Iterable<GameObject>{
 		this.bomber = new_bomber;
 		this.fighter = new_fighter;
 		
-		gameObjects = new LinkedList<GameObject>();
+		gameObjects = new ArrayList<GameObject>();
 		gameObjects.add(antiAir);
 		gameObjects.add(bomber);
 		gameObjects.add(fighter);
@@ -76,6 +77,10 @@ public class Player implements Iterable<GameObject>{
 		this.fighter = new_fighter;
 	}
 	
+	public ArrayList<GameObject> getGameObjectList()
+	{
+		return (ArrayList<GameObject>) gameObjects;
+	}
 
 	@Override
 	public Iterator<GameObject> iterator() {

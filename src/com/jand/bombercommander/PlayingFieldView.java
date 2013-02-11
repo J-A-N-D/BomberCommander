@@ -2,6 +2,8 @@ package com.jand.bombercommander;
 
 import com.jand.bombercommander.GameObject;
 import com.jand.bombercommander.GameObject.GameObjectType;
+import com.jand.bombercommander.screens.Player1SetupActivity;
+
 import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
@@ -21,8 +23,9 @@ public class PlayingFieldView extends SurfaceView implements
 		SurfaceHolder.Callback {
 	private static final String TAG = PlayingFieldView.class.getSimpleName();
 	private GameThread thread;
-
-	private ArrayList<GameObject> gameObjects;
+	ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+	
+	Player p1, p2;
 
 	public PlayingFieldView(Context context, AttributeSet attributeSet) {
 		super(context, attributeSet);
@@ -33,18 +36,16 @@ public class PlayingFieldView extends SurfaceView implements
 		}
 
 		getHolder().addCallback(this);
-
-		// Game object tests
-		gameObjects = new ArrayList<GameObject>();
-		gameObjects.add(new GameObject(BitmapFactory.decodeResource(
-				getResources(), R.drawable.bc_aa), GameObjectType.ANTIAIR, 110,
-				640));
-		gameObjects.add(new GameObject(BitmapFactory.decodeResource(
-				getResources(), R.drawable.bc_bomber), GameObjectType.BOMBER,
-				310, 640));
-		gameObjects.add(new GameObject(BitmapFactory.decodeResource(
-				getResources(), R.drawable.bc_fighter), GameObjectType.FIGHTER,
-				510, 640));
+		
+		GameObject AA1 = new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_aa), GameObjectType.ANTIAIR, 110, 640);
+		GameObject bomber1 = new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_bomber), GameObjectType.BOMBER, 310, 640);
+		GameObject fighter1 = new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_fighter), GameObjectType.FIGHTER, 510, 640);
+		GameObject AA2 = new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_aa), GameObjectType.ANTIAIR, 110, 640);
+		GameObject bomber2 = new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_bomber), GameObjectType.BOMBER, 310, 640);
+		GameObject fighter2 = new GameObject(BitmapFactory.decodeResource(getResources(), R.drawable.bc_fighter), GameObjectType.FIGHTER, 510, 640);
+		
+		p1 = new Player( AA1, bomber1, fighter1 );
+		p2 = new Player( AA2, bomber2, fighter2 );
 
 		thread = new GameThread(getHolder(), this);
 		setFocusable(true);
@@ -84,9 +85,20 @@ public class PlayingFieldView extends SurfaceView implements
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-
+		checkPlayer();
+		
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			boolean objectFound = false;
+			
+			switch (Player1SetupActivity.state)
+			{
+			case P1_SETUP:
+				
+				break;
+			case P2_SETUP:
+				break;
+			}
+			
 			for (GameObject obj : gameObjects) {
 				// only tries to set A SINGLE object to a motion event
 				if (!objectFound) {
@@ -185,10 +197,23 @@ public class PlayingFieldView extends SurfaceView implements
 	public void onDraw(Canvas c) {
 		if (!isInEditMode()) {
 			c.drawColor(0, android.graphics.PorterDuff.Mode.CLEAR);
-
-			for (GameObject obj : gameObjects) {
+			
+			checkPlayer();
+			for (GameObject obj : gameObjects)
 				obj.draw(c);
-			}
+		}
+	}
+	
+	private void checkPlayer()
+	{
+		switch (Player1SetupActivity.state)
+		{
+		case P1_SETUP:
+			gameObjects = p1.getGameObjectList();
+			break;
+		case P2_SETUP:
+			gameObjects = p2.getGameObjectList();
+			break;
 		}
 	}
 }

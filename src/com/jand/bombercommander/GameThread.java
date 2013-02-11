@@ -1,14 +1,15 @@
 package com.jand.bombercommander;
 
+import com.jand.bombercommander.screens.Player1SetupActivity;
+import com.jand.bombercommander.screens.Player1SetupActivity.gameState;
+
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
-import android.widget.TextView;
 
 public class GameThread extends Thread {
 	private static final String TAG = GameThread.class.getSimpleName();
-	private static enum gameState { P1_SETUP, P2_SETUP };
-	gameState state;
+	
 	private boolean running;
 	private SurfaceHolder surfaceHolder;
 	private PlayingFieldView playingField;
@@ -18,7 +19,7 @@ public class GameThread extends Thread {
 		super();
 		surfaceHolder = sh;
 		playingField = pf;
-		state = gameState.P1_SETUP;
+		Player1SetupActivity.state = gameState.P1_SETUP;
 	}
 	
 	@Override
@@ -33,10 +34,24 @@ public class GameThread extends Thread {
 			
 			try
 			{
-				canvas = this.surfaceHolder.lockCanvas();
-				synchronized (surfaceHolder)
+				switch (Player1SetupActivity.state)
 				{
-					playingField.onDraw( canvas );
+				case P1_SETUP:
+					canvas = this.surfaceHolder.lockCanvas();
+					synchronized (surfaceHolder)
+					{
+						playingField.onDraw( canvas );
+					}
+					break;
+				case P2_SETUP:
+					canvas = this.surfaceHolder.lockCanvas();
+					synchronized (surfaceHolder)
+					{
+						playingField.onDraw( canvas );
+					}
+					break;
+				default:
+					break;
 				}
 			}
 			finally
