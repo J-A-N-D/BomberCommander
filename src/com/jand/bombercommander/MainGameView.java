@@ -26,9 +26,11 @@ public class MainGameView extends SurfaceView implements
 	ArrayList<GameObject> totalGameObjects;
 
 	Player p1, p2;
-	
-	int player1BomberState = 0;
-	int player2BomberState = 0;
+	public enum BomberState{
+		SUCCESSFUL, SHOT_DOWN_BY_AA, SHOT_DOWN_BY_FIGHTER
+	}
+	BomberState player1BomberState = BomberState.SUCCESSFUL;
+	BomberState player2BomberState = BomberState.SUCCESSFUL;
 	boolean gameResolved = false;
 
 	public MainGameView(Context context, AttributeSet attributeSet) {
@@ -241,15 +243,15 @@ public class MainGameView extends SurfaceView implements
 			
 			if(obj.getIsPlayerOne() && obj.getType() == GameObjectType.BOMBER){
 				switch(player1BomberState){
-				case 0:
+				case SUCCESSFUL:
 					
 					break;
-				case 1:
+				case SHOT_DOWN_BY_FIGHTER:
 					if(obj.getY() <= 500){
 						setExplosion( obj );
 					}
 					break;
-				case 2:
+				case SHOT_DOWN_BY_AA:
 					if(obj.getY() < 100)
 					{
 						setExplosion( obj );
@@ -257,29 +259,40 @@ public class MainGameView extends SurfaceView implements
 					break;
 				}
 			}
-		}
-		switch(player2BomberState){
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
+			if(!obj.getIsPlayerOne() && obj.getType() == GameObjectType.BOMBER){
+				switch(player2BomberState){
+				case SUCCESSFUL:
+					
+					break;
+				case SHOT_DOWN_BY_FIGHTER:
+					if(obj.getY() >= 500){
+						setExplosion( obj );
+					}
+					break;
+				case SHOT_DOWN_BY_AA:
+					if(obj.getY() > 1030)
+					{
+						setExplosion( obj );
+					}
+					break;
+				}
+			}
 		}
 	}
 	public void resolveGame(){
-		player1BomberState = 0;
-		player2BomberState = 0;
+		player1BomberState = BomberState.SUCCESSFUL;
+		player2BomberState = BomberState.SUCCESSFUL;
+		if(Math.abs(p1.getBomber().getLane() - p2.getAntiAir().getLane()) == 1){
+		player1BomberState = BomberState.SHOT_DOWN_BY_AA;
+		}
 		if(p1.getBomber().getLane() == (p2.getFighter().getLane())){
-			player1BomberState = 1;
-		}if(Math.abs(p1.getBomber().getLane() - p2.getAntiAir().getLane()) == 1){
-			player1BomberState = 2;
+			player1BomberState = BomberState.SHOT_DOWN_BY_FIGHTER;
 		}
 		if(Math.abs(p2.getBomber().getLane() - p1.getAntiAir().getLane()) == 1){
-			player2BomberState = 2;
+			player2BomberState = BomberState.SHOT_DOWN_BY_AA;
 		}
-		if(p2.getBomber().getLane() == (p2.getFighter().getLane())){
-			player2BomberState = 1;
+		if(p2.getBomber().getLane() == (p1.getFighter().getLane())){
+			player2BomberState = BomberState.SHOT_DOWN_BY_FIGHTER;
 		}
 		gameResolved = true;
 	}
