@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/blue_overlay"
-    tools:context=".Player1SetupActivity" >
+    tools:context=".MainGameActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:src="@drawable/grid" />
     </LinearLayout>
 
-    <com.jand.bombercommander.PlayingFieldView
+    <com.jand.bombercommander.MainGameView
         android:id="@+id/playingFieldView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

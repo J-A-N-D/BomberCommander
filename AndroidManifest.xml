@@ -14,7 +14,7 @@
         android:label="@string/label"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.jand.bombercommander.screens.MainScreenActivity"
+            android:name="com.jand.bombercommander.screens.StartScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,11 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jand.bombercommander.screens.PlayingFieldActivity"
-            android:label="@string/title_activity_playing_field" >
-        </activity>
-        <activity
-            android:name="com.jand.bombercommander.screens.Player1SetupActivity"
+            android:name="com.jand.bombercommander.screens.MainGameActivity"
             android:label="@string/title_activity_player1_setup"
             android:parentActivityName="com.jand.bombercommander.screens.PlayingFieldActivity" >
         </activity>

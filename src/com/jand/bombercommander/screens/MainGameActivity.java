@@ -16,7 +16,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 
-public class Player1SetupActivity extends Activity {
+public class MainGameActivity extends Activity {
 	
 	public static GameThread thread;
 	public static enum gameState { P1_SETUP, P2_SETUP, ANIMATION };

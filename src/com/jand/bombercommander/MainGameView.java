@@ -2,7 +2,7 @@ package com.jand.bombercommander;
 
 import com.jand.bombercommander.GameObject;
 import com.jand.bombercommander.GameObject.GameObjectType;
-import com.jand.bombercommander.screens.Player1SetupActivity;
+import com.jand.bombercommander.screens.MainGameActivity;
 
 import java.util.ArrayList;
 import android.app.Activity;
@@ -19,9 +19,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class PlayingFieldView extends SurfaceView implements
+public class MainGameView extends SurfaceView implements
 		SurfaceHolder.Callback {
-	private static final String TAG = PlayingFieldView.class.getSimpleName();
+	private static final String TAG = MainGameView.class.getSimpleName();
 	ArrayList<GameObject> playerGameObjects = new ArrayList<GameObject>();
 	ArrayList<GameObject> totalGameObjects;
 
@@ -31,7 +31,7 @@ public class PlayingFieldView extends SurfaceView implements
 	int player2BomberState = 0;
 	boolean gameResolved = false;
 
-	public PlayingFieldView(Context context, AttributeSet attributeSet) {
+	public MainGameView(Context context, AttributeSet attributeSet) {
 		super(context, attributeSet);
 
 		if (!isInEditMode()) {
@@ -63,7 +63,7 @@ public class PlayingFieldView extends SurfaceView implements
 		p1 = new Player(AA1, bomber1, fighter1);
 		p2 = new Player(AA2, bomber2, fighter2);
 
-		Player1SetupActivity.thread = new GameThread(getHolder(), this);
+		MainGameActivity.thread = new GameThread(getHolder(), this);
 		setFocusable(true);
 	}
 
@@ -79,8 +79,8 @@ public class PlayingFieldView extends SurfaceView implements
 		Matrix reverse = new Matrix();
 		reverse.postRotate(180);
 
-		Player1SetupActivity.thread.setRunning(true);
-		Player1SetupActivity.thread.start();
+		MainGameActivity.thread.setRunning(true);
+		MainGameActivity.thread.start();
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class PlayingFieldView extends SurfaceView implements
 		Log.d(TAG, "Surface is being destroyed");
 		while (retry) {
 			try {
-				Player1SetupActivity.thread.join();
+				MainGameActivity.thread.join();
 				retry = false;
 			} catch (InterruptedException e) {
 				Log.d(VIEW_LOG_TAG, e.getMessage());
@@ -106,7 +106,7 @@ public class PlayingFieldView extends SurfaceView implements
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			boolean objectFound = false;
 			
-			if( Player1SetupActivity.state == Player1SetupActivity.gameState.P1_SETUP || Player1SetupActivity.state == Player1SetupActivity.gameState.P2_SETUP)
+			if( MainGameActivity.state == MainGameActivity.gameState.P1_SETUP || MainGameActivity.state == MainGameActivity.gameState.P2_SETUP)
 			{
 				for (GameObject obj : playerGameObjects) {
 					// only tries to set A SINGLE object to a motion event
@@ -122,7 +122,7 @@ public class PlayingFieldView extends SurfaceView implements
 		}
 
 		if (event.getAction() == MotionEvent.ACTION_MOVE) {
-			if( Player1SetupActivity.state == Player1SetupActivity.gameState.P1_SETUP || Player1SetupActivity.state == Player1SetupActivity.gameState.P2_SETUP)
+			if( MainGameActivity.state == MainGameActivity.gameState.P1_SETUP || MainGameActivity.state == MainGameActivity.gameState.P2_SETUP)
 			{
 				for (GameObject obj : playerGameObjects) {
 					if (obj.getIsTouched()) {
@@ -141,7 +141,7 @@ public class PlayingFieldView extends SurfaceView implements
 			// first it sets the lane for the object, and prevents the object
 			// from stacking on an occupied lane
 			// then it sets the object's x,y coordinates onto the screen
-			if( Player1SetupActivity.state == Player1SetupActivity.gameState.P1_SETUP || Player1SetupActivity.state == Player1SetupActivity.gameState.P2_SETUP)
+			if( MainGameActivity.state == MainGameActivity.gameState.P1_SETUP || MainGameActivity.state == MainGameActivity.gameState.P2_SETUP)
 			{
 				for (GameObject obj : playerGameObjects) {
 					if (obj.getIsTouched())
@@ -209,7 +209,7 @@ public class PlayingFieldView extends SurfaceView implements
 
 			checkPlayer();
 			
-			switch (Player1SetupActivity.state)
+			switch (MainGameActivity.state)
 			{
 			case P1_SETUP:
 			case P2_SETUP:
@@ -282,7 +282,7 @@ public class PlayingFieldView extends SurfaceView implements
 	}
 
 	private void checkPlayer() {
-		switch (Player1SetupActivity.state) {
+		switch (MainGameActivity.state) {
 		case P1_SETUP:
 			playerGameObjects = p1.getGameObjectList();
 			for(GameObject g : playerGameObjects){				g.setIsPlayerOne(true);			}			break;
