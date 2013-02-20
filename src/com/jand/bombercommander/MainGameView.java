@@ -233,24 +233,27 @@ public class MainGameView extends SurfaceView implements
 	private void updateAnimation() {
 
 		for (GameObject obj : totalGameObjects) {
-			if(obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
+			if(!obj.getIsDestroyed() && obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
 				obj.setY(obj.getY() - 5);
-			}else if (!obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
+			}else if (!obj.getIsDestroyed() && !obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
 				obj.setY(obj.getY() + 5);
 			}
+			
 			if(obj.getIsPlayerOne() && obj.getType() == GameObjectType.BOMBER){
 				switch(player1BomberState){
 				case 0:
 					
 					break;
 				case 1:
-					if(obj.getY() < 500){
-						Bitmap explosion = BitmapFactory.decodeResource(getResources(), R.drawable.bc_explosion);
-						obj.setBitmap( explosion );
+					if(obj.getY() <= 500){
+						setExplosion( obj );
 					}
 					break;
 				case 2:
-					if(obj.getY() < 500)
+					if(obj.getY() < 100)
+					{
+						setExplosion( obj );
+					}
 					break;
 				}
 			}
@@ -302,5 +305,12 @@ public class MainGameView extends SurfaceView implements
 			updateAnimation();
 			break;
 		}
+	}
+	
+	private void setExplosion( GameObject obj )
+	{
+		obj.setIsDestroyed( true );
+		Bitmap explosion = BitmapFactory.decodeResource(getResources(), R.drawable.bc_explosion);
+		obj.setBitmap( explosion );
 	}
 }

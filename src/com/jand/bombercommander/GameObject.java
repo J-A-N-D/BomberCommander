@@ -11,6 +11,7 @@ public class GameObject {
 	private int width, height;
 	private boolean isTouched;
 	private boolean is_player_one;
+	private boolean isDestroyed;
 	private int field_position;
 	private int lane;
 	GameObjectType type;
@@ -28,6 +29,7 @@ public class GameObject {
 		this.is_player_one = true;
 		this.field_position = 0;
 		lane = -1;
+		isDestroyed = false;
 	}
 	
 	public GameObject(GameObjectType start_type, boolean start_is_player_one, int start_field_position) {
@@ -35,6 +37,7 @@ public class GameObject {
 		this.is_player_one = start_is_player_one;
 		this.field_position = start_field_position;
 		lane = -1;
+		isDestroyed = false;
 	}
 	
 	public Bitmap getBitmap()
@@ -135,6 +138,16 @@ public class GameObject {
 		else
 			setIsTouched( false );
 		return isTouched;
+	}
+	
+	public boolean getIsDestroyed()
+	{
+		return isDestroyed;
+	}
+	
+	public void setIsDestroyed( boolean destroyed )
+	{
+		isDestroyed = destroyed;
 	}
 	
 	public void draw( Canvas c )
