@@ -38,9 +38,10 @@ public class MainGameActivity extends Activity {
 					break;
 				case P2_SETUP:
 					state = gameState.ANIMATION;
-					playerText.setVisibility( v.INVISIBLE );
-					actionButton.setVisibility( v.INVISIBLE );
-					
+					playerText.setVisibility( View.INVISIBLE );
+					actionButton.setVisibility( View.INVISIBLE );
+					break;
+				default:
 					break;
 				}
 			}
