@@ -47,4 +47,11 @@ public class MainGameActivity extends Activity {
 			}
 		});
 	}
+	
+	@Override
+	public void onBackPressed()
+	{
+		thread.setRunning( false );
+		finish();
+	}
 }
