@@ -235,9 +235,9 @@ public class MainGameView extends SurfaceView implements
 	private void updateAnimation() {
 
 		for (GameObject obj : totalGameObjects) {
-			if(obj.getIsActive() && obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
+			if(!obj.getIsDestroyed() && obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
 				obj.setY(obj.getY() - 5);
-			}else if (obj.getIsActive() && !obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
+			}else if (!obj.getIsDestroyed() && !obj.getIsPlayerOne() && obj.getType() != GameObjectType.ANTIAIR){
 				obj.setY(obj.getY() + 5);
 			}
 			
