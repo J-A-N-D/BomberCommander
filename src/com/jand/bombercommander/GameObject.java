@@ -8,10 +8,10 @@ public class GameObject {
 	
 	private Bitmap bitmap;
 	private int posX, posY;
-	private int width, height;
 	private boolean isTouched;
 	private boolean is_player_one;
 	private boolean isDestroyed;
+	private boolean isActive;
 	private int field_position;
 	private int lane;
 	GameObjectType type;
@@ -30,6 +30,7 @@ public class GameObject {
 		this.field_position = 0;
 		lane = -1;
 		isDestroyed = false;
+		isActive = true;
 	}
 	
 	public GameObject(GameObjectType start_type, boolean start_is_player_one, int start_field_position) {
@@ -38,6 +39,7 @@ public class GameObject {
 		this.field_position = start_field_position;
 		lane = -1;
 		isDestroyed = false;
+		isActive = true;
 	}
 	
 	public Bitmap getBitmap()
@@ -140,19 +142,27 @@ public class GameObject {
 		return isTouched;
 	}
 	
-	public boolean getIsDestroyed()
+	public boolean getIsActive()
 	{
-		return isDestroyed;
+		return isActive;
 	}
 	
-	public void setIsDestroyed( boolean destroyed )
+	public void setIsActive( boolean active )
 	{
-		isDestroyed = destroyed;
+		isActive = active;
+	}
+	
+	public boolean getIsDestroyed() {
+		return isDestroyed;
+	}
+
+	public void setIsDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}
 	
 	public void draw( Canvas c )
 	{
-		c.drawBitmap( bitmap, posX, posY, null );
+		if( isActive ) c.drawBitmap( bitmap, posX, posY, null );
 	}
 	
 }

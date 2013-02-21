@@ -12,7 +12,7 @@ import android.app.Activity;
 public class MainGameActivity extends Activity {
 	
 	public static GameThread thread;
-	public static enum gameState { P1_SETUP, P2_SETUP, ANIMATION };
+	public static enum gameState { P1_SETUP, P2_SETUP, ANIMATION, POST_ROUND };
 	public static gameState state;
 	TextView playerText;
 	Button actionButton;

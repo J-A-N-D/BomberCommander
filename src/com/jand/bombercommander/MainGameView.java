@@ -257,6 +257,9 @@ public class MainGameView extends SurfaceView implements
 					break;
 				}
 			}
+			
+			if( obj.getY() < 0 || obj.getY() >= 1280 ) obj.setIsActive(false);
+			
 		}
 		switch(player2BomberState){
 		case 0:
